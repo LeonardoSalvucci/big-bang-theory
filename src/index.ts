@@ -14,5 +14,15 @@ app.get('/searchByName', (c) => {
 	const reg = new RegExp(q, 'gi');
 	return c.json(Character.filter((char) => reg.test(char.name)))
 })
+app.get('/searchByCharName', (c) => {
+	const { q } = c.req.query();
+
+	if (!q || q.length < 3) {
+		return c.json({ error: 'Query must be at least 3 characters long' }, 400);
+	}
+
+	const reg = new RegExp(q, 'gi');
+	return c.json(Character.filter((char) => reg.test(char.charName)))
+})
 
 export default app
