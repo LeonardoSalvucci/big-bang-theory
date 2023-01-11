@@ -5,7 +5,7 @@ This project is experimental to learn new technologies and to have fun. It is no
 This is an API that provides information about the characters of the TV show "The Big Bang Theory". The data is scraped from [IMDB](https://www.imdb.com/title/tt0898266/fullcredits/?ref_=tt_cl_sm). The API is built with [Hono](https://honojs.dev/) and deployed on Cloudflare Workers.
 
 If you want to run the scparer locally, you can do so by running `npm run scrape`. This will create or update a `characters.json` file in the db directory. 
-You can then run `npm run dev` to start the API locally on url http://localhost:8787/.
+You can then run `npm run dev:api` to start the API locally on url http://localhost:8787/.
 
 ## API
 The API is available at https://big-bang-theory-api.lesalvucci.workers.dev. The API is currently in version 1.0.0.
