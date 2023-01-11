@@ -5,9 +5,10 @@ const page = await response.text();
 
 const $ = cheerio.load(page);
 const characters = $('.cast_list tr')
+
 let chars = []
-for(let char of characters) {
-  let aux = {}
+characters.each( (_,char) => {
+  let aux = {} 
   const img =$(char).find('img')[0]
   if(img) {
     aux.name = img.attribs.title || img.attribs.alt,
@@ -16,6 +17,12 @@ for(let char of characters) {
   const charName = $(char).find('.character a')[0]
   if(charName) aux.charName = charName.children[0].data
   if(Object.keys(aux).length > 0) chars.push(aux)
-}
-chars = chars.filter(char => char.name && char.charName)
+})
+
+let consecutiveIndex = 1
+chars = chars.filter(char => char.name && char.charName).map(char => {
+  char.id = consecutiveIndex
+  consecutiveIndex++
+  return char
+})
 await writeFile('./db/characters.json', JSON.stringify(chars, null, 2))
