@@ -21,6 +21,9 @@
     "wrangler": "2.7.1"
   },
   "eslintConfig": {
-    "extends": "standard"
+    "extends": "standard",
+    "rules":{
+      "no-unused-expressions": "off"
+    }
   }
 }
