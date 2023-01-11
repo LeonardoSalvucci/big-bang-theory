@@ -1,6 +1,8 @@
 export function paginate(items, {pageNumber, pageSize} ) {
-  const pageOrDefault = pageNumber || 1;
-  const sizeOrDefault = pageSize || 10;
+  const pageOrDefault = Number(pageNumber || 1);
+  const sizeOrDefault = Number(pageSize || 10);
+  
+  if (pageSize === -1) return {total: items.length, pages: 1, limit: items.length, items}
   const startIndex = (pageOrDefault - 1) * sizeOrDefault
   const itemsFiltered = [...items].slice(startIndex, startIndex + sizeOrDefault)
   return {
