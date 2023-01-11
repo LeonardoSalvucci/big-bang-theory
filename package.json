@@ -10,8 +10,8 @@
     "scrape": "node scrape.js"
   },
   "dependencies": {
-    "cheerio": "^1.0.0-rc.12",
-    "hono": "^2.7.2"
+    "cheerio": "1.0.0-rc.12",
+    "hono": "2.7.2"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20221111.1",
@@ -22,7 +22,7 @@
   },
   "eslintConfig": {
     "extends": "standard",
-    "rules":{
+    "rules": {
       "no-unused-expressions": "off"
     }
   }
