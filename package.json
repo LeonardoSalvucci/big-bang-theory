@@ -5,13 +5,19 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "wrangler dev",
+    "dev:api": "wrangler dev",
     "publish": "wrangler publish",
-    "scrape": "node scrape.js"
+    "scrape": "node scrape.js",
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
     "cheerio": "1.0.0-rc.12",
-    "hono": "2.7.2"
+    "hono": "2.7.2",
+    "astro": "1.9.0"    
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20221111.1",
