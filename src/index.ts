@@ -1,12 +1,16 @@
 import { Hono } from 'hono';
 import Character from '../db/characters.json';
+import { paginate } from './utils/paginate';
 
 const app = new Hono();
 
 /**
  * @api {get} /all Get all characters
  */
-app.get('/all', (c) => c.json(Character))
+app.get('/all', (c) => {
+	const { page: pageNumber, limit:  pageSize} = c.req.query()
+	return c.json(paginate(Character, {pageNumber, pageSize}))
+})
 
 /**
  * @api {get} /search Search for a character by it's name or charName
