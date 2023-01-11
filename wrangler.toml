@@ -1,3 +1,3 @@
 name = "big-bang-theory-api"
-main = "src/index.ts"
+main = "api/index.ts"
 compatibility_date = "2023-01-10"
