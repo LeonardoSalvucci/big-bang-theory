@@ -35,7 +35,7 @@ const chars: PaginatedResponse = await response.json()
 			<img src="/img/atom.svg" class="w-32 h-32 absolute opacity-50 -rotate-90" />
 		</div>
 		
-		<section class="container h-full m-auto py-28">
+		<section class="container h-full m-auto pt-28">
 			<article id="items" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 				{
 					chars.items.map(char => {
@@ -50,6 +50,10 @@ const chars: PaginatedResponse = await response.json()
 				}
 			</article>
 		</section>
+
+		<footer class="flex flex-gros justify-center items-center py-10">
+			<Pagination currentPage={currentPage} pages={chars.total} />
+		</footer>
 
 	</main>
 </Layout>
