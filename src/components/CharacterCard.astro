@@ -1,10 +1,10 @@
 ---
-const { photoUrl, name, charName} = Astro.props
+const { photourl, name, charname} = Astro.props
 ---
-<character-card data-photoUrl={photoUrl} data-name={name} data-charName={charName}>
+<character-card data-photourl={photourl} data-name={name} data-charname={charname}>
   <div class="flex flex-col justify-center items-center">
-    <h3 class="font-title text-2xl">{charName}</h3>
-    <img src={photoUrl} alt={name} class="" />
+    <h3 class="font-title text-2xl">{charname}</h3>
+    <img src={photourl} alt={name} class="" />
     <h3 class="font-title opacity-60">{name}</h3>
   </div>
 </character-card>
@@ -13,7 +13,20 @@ const { photoUrl, name, charName} = Astro.props
   class CharacterCard extends HTMLElement {
     constructor() {
       super()
+    }
 
+    /**
+     * This render function is to create the component on the fly when a new instance is created
+     */
+    render() {
+      const { photourl, name, charname } = this.dataset
+      const div = document.createElement('div')
+      div.classList.add('flex', 'flex-col', 'justify-center', 'items-center')
+      div.innerHTML = `
+        <h3 class="font-title text-2xl">${charname}</h3>
+        <img src="${photourl}"" alt={name} class="" />
+        <h3 class="font-title opacity-60">${name}</h3>`
+      this.attachShadow({mode: 'open'}).appendChild(div)
     }
   }
 
