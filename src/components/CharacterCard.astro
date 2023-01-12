@@ -5,9 +5,9 @@ const { photourl, name, charname} = Astro.props
   <div class="flex flex-col justify-center items-center h-full">
     <h3 class="font-title text-2xl">{charname}</h3>
     <div class="flex flex-grow justify-center items-center">
-      <img src={photourl} alt={name} class="" />
+      <img src={photourl ?? '/img/placeholder.png'} alt={name} class="" />
     </div>
-    <h3 class="font-title opacity-60">{name}</h3>
+    <h3 class="opacity-60">{name}</h3>
   </div>
 </character-card>
 
@@ -29,7 +29,7 @@ const { photourl, name, charname} = Astro.props
         <div class="flex flex-grow justify-center items-center">
           <img src="${photourl}"" alt={name} class="" />
         </div>
-        <h3 class="font-title opacity-60">${name}</h3>`
+        <h3 class="opacity-60">${name}</h3>`
       this.appendChild(div)
     }
   }
