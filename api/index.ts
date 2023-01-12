@@ -4,7 +4,7 @@ import Character from '../db/characters.json'
 import { paginate } from './utils/paginate'
 
 const app = new Hono()
-app.use(cors())
+app.use('*', cors())
 /**
  * @api {get} /all Get all characters
  */
