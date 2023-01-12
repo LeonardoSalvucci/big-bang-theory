@@ -18,14 +18,14 @@ const chars: PaginatedResponse = await response.json()
 <Layout title="The Big Bang Theory.">
 	<main class="bg-gradient-radial from-primary-light-orange to-primary-orange">
 
-		<section class="flex flex-col justify-center items-center bg-gradient-radial from-primary-light-orange via-primary-orange to-bang-red">
+		<section class="flex flex-col justify-center items-center bg-gradient-radial from-primary-light-orange via-primary-orange to-bang-red pb-10">
 			
 			<header class="flex flex-col justify-center items-center gap-5 pt-20 ">
 				<Logo />
 				<h2 class="font-title text-4xl">Cast gallery</h2>
 			</header>
 
-			<footer class="flex flex-col flex-grow w-3/5 pb-10">
+			<footer class="flex flex-col flex-grow w-3/5 pb-10 py-10 md:py-2">
 				<span class="font-title text-2xl text-bang-red">Search</span>
 				<input type="text" class="transition w-full h-10 rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-200 border-2 border-bang-red text-bang-red pl-5 bg-primary-light-orange placeholder-zinc-500 text-ellipsis" placeholder="Search by name or character name..." />
 				<Pagination currentPage={currentPage} pages={chars.total} />
