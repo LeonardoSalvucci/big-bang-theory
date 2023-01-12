@@ -2,20 +2,7 @@
 import Logo from '../components/Logo.astro';
 import Layout from '../layouts/Layout.astro';
 import CharacterCard from '../components/CharacterCard.astro';
-
-interface Char {
-	id: number;
-	name: string;
-	photo: string;
-	charName: string;
-}
-
-interface PaginatedResponse {
-	total: number;
-	pages: number;
-	limit: number;
-	items: Char[];
-}
+import { PaginatedResponse } from '../types';
 
 const response = await fetch('https://big-bang-theory-api.lesalvucci.workers.dev/all')
 const chars: PaginatedResponse = await response.json()
@@ -23,7 +10,7 @@ const chars: PaginatedResponse = await response.json()
 
 <Layout title="The Big Bang Theory.">
 	<main class="bg-gradient-radial from-primary-light-orange to-primary-orange">
-		<div class="container m-auto">
+		<div class="container h-screen m-auto">
 			<article class="flex flex-col justify-center items-center gap-20">
 				<header class="flex flex-col justify-center items-center gap-5 pt-20 pb-10">
 					<Logo />
@@ -33,14 +20,14 @@ const chars: PaginatedResponse = await response.json()
 					<span class="font-title text-2xl text-bang-red">Search</span>
 					<input type="text" class="w-full h-10 rounded-md border-2 border-bang-red text-bang-red pl-10 bg-primary-light-orange placeholder-zinc-500" placeholder="Search by name or character name..." />
 				</section>
-				<section class="grid grid-cols-3 gap-10">
+				<section id="items" class="grid grid-cols-3 gap-10">
 					{
 						chars.items.map(char => {
 							return (
 								<CharacterCard
 									name={char.name}
-									photoUrl={char.photo}
-									charName={char.charName}
+									photourl={char.photo}
+									charname={char.charName}
 								/>
 							)
 						})
@@ -50,7 +37,55 @@ const chars: PaginatedResponse = await response.json()
 		</div>
 	</main>
 </Layout>
+<script>
+	import { PaginatedResponse, Char, CharacherCard } from '../types';
 
+	function renderItems(items: Char[]) {
+		const itemsContainer = document.querySelector('#items');
+		if (itemsContainer) {
+			itemsContainer.innerHTML = '';
+			items.forEach(char => {
+				const card: CharacherCard = document.createElement('character-card') as CharacherCard;
+				card.setAttribute('data-name', char.name);
+				card.setAttribute('data-photourl', char.photo);
+				card.setAttribute('data-charname', char.charName);
+				card.render();
+				itemsContainer.appendChild(card);
+			})
+		}
+	}
+
+	const search = document.querySelector('input');
+	if(search) {
+	
+		search.addEventListener('input', async (e) => {
+			if (!(e.target instanceof HTMLInputElement)) {
+				return;
+			}
+			const value = e.target.value;
+
+			// Clear search and retrieve all
+			if(value.length === 0) {
+				const response = await fetch('https://big-bang-theory-api.lesalvucci.workers.dev/all')
+				const paginatedResponse: PaginatedResponse = await response.json();
+				renderItems(paginatedResponse.items);
+				return;
+			}
+
+			// Prevent too short searches
+			if (value.length > 0 && value.length < 3) {
+				return;
+			}
+
+			// Perform search
+			const urlSearch = new URLSearchParams();
+			urlSearch.append('q', value);
+			const response = await fetch('https://big-bang-theory-api.lesalvucci.workers.dev/search?'+urlSearch.toString());
+			const items: Char[] = await response.json();
+			renderItems(items);
+		})
+	}
+</script>
 <style>
 
 </style>
