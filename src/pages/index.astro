@@ -32,6 +32,9 @@ const chars: PaginatedResponse = await response.json()
 							<svg aria-hidden="true" class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
 							Prev
 						</a>
+						<span class="inline-flex justify-center items-center border-2 border-bang-red bg-bang-red text-white px-3 py-1 font-title" style="letter-spacing: 3px;">
+							{currentPage}
+						</span>
 						<a
 							href={parseInt(currentPage) === chars.pages ? '#' : `?page=${parseInt(currentPage) + 1}`} 
 							class="inline-flex justify-center items-center  border-2 border-l-0 border-bang-red bg-transparent text-black rounded-r-xl px-3 py-1 hover:bg-bang-red hover:text-white cursor-pointer">
