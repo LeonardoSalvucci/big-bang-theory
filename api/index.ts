@@ -1,9 +1,10 @@
 import { Hono } from 'hono'
+import { cors } from 'hono/cors'
 import Character from '../db/characters.json'
 import { paginate } from './utils/paginate'
 
 const app = new Hono()
-
+app.use(cors())
 /**
  * @api {get} /all Get all characters
  */
