@@ -7,7 +7,8 @@ import { PaginatedResponse } from '../types';
 const { searchParams } = Astro.url
 
 const fetchURL: URL = new URL('https://big-bang-theory-api.lesalvucci.workers.dev/all')
-fetchURL.searchParams.append('page', searchParams.get('page') || "1")
+const currentPage = searchParams.get('page') || "1";
+fetchURL.searchParams.append('page', currentPage)
 fetchURL.searchParams.append('limit', searchParams.get('limit') || "9")
 const response = await fetch(fetchURL)
 const chars: PaginatedResponse = await response.json()
@@ -24,6 +25,20 @@ const chars: PaginatedResponse = await response.json()
 				<section class="flex flex-col flex-1 w-3/5">
 					<span class="font-title text-2xl text-bang-red">Search</span>
 					<input type="text" class="w-full h-10 rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-200 border-2 border-bang-red text-bang-red pl-10 bg-primary-light-orange placeholder-zinc-500" placeholder="Search by name or character name..." />
+					<div class="flex flex-grow justify-center items-center pt-5">
+						<a 
+						href={parseInt(currentPage) === 1 ? '#' : `?page=${parseInt(currentPage) - 1}`} 
+							class="inline-flex justify-center items-center border-2 border-r-0 border-bang-red bg-transparent text-black rounded-l-xl px-3 py-1 hover:bg-bang-red hover:text-white cursor-pointer">
+							<svg aria-hidden="true" class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
+							Prev
+						</a>
+						<a
+							href={parseInt(currentPage) === chars.pages ? '#' : `?page=${parseInt(currentPage) + 1}`} 
+							class="inline-flex justify-center items-center  border-2 border-l-0 border-bang-red bg-transparent text-black rounded-r-xl px-3 py-1 hover:bg-bang-red hover:text-white cursor-pointer">
+							Next
+							<svg aria-hidden="true" class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+						</a>
+					</div>
 				</section>
 				<section id="items" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 					{
