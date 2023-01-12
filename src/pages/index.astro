@@ -8,7 +8,7 @@ const { searchParams } = Astro.url
 
 const fetchURL: URL = new URL('https://big-bang-theory-api.lesalvucci.workers.dev/all')
 fetchURL.searchParams.append('page', searchParams.get('page') || "1")
-fetchURL.searchParams.append('limit', searchParams.get('limit') || "10")
+fetchURL.searchParams.append('limit', searchParams.get('limit') || "9")
 const response = await fetch(fetchURL)
 const chars: PaginatedResponse = await response.json()
 ---
