@@ -71,7 +71,7 @@ const chars: PaginatedResponse = await response.json()
 
 			// Clear search and retrieve all
 			if(value.length === 0) {
-				const response = await fetch('https://big-bang-theory-api.lesalvucci.workers.dev/all')
+				const response = await fetch('https://big-bang-theory-api.lesalvucci.workers.dev/all?page=1&limit=9')
 				const paginatedResponse: PaginatedResponse = await response.json();
 				renderItems(paginatedResponse.items);
 				return;
