@@ -52,7 +52,7 @@ const chars: PaginatedResponse = await response.json()
 			items.forEach(char => {
 				const card: CharacherCard = document.createElement('character-card') as CharacherCard;
 				card.setAttribute('data-name', char.name);
-				card.setAttribute('data-photourl', char.photo);
+				card.setAttribute('data-photourl', char.photo ?? '/img/placeholder.png');
 				card.setAttribute('data-charname', char.charName);
 				card.render();
 				itemsContainer.appendChild(card);
