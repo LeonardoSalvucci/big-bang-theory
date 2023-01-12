@@ -1,0 +1,21 @@
+---
+const { photoUrl, name, charName} = Astro.props
+---
+<character-card data-photoUrl={photoUrl} data-name={name} data-charName={charName}>
+  <div class="flex flex-col justify-center items-center">
+    <h3 class="font-title text-2xl">{charName}</h3>
+    <img src={photoUrl} alt={name} class="" />
+    <h3 class="font-title opacity-60">{name}</h3>
+  </div>
+</character-card>
+
+<script>
+  class CharacterCard extends HTMLElement {
+    constructor() {
+      super()
+
+    }
+  }
+
+  customElements.define('character-card', CharacterCard)
+</script>
