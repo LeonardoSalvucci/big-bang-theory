@@ -18,8 +18,7 @@ const chars: PaginatedResponse = await response.json()
 <Layout title="The Big Bang Theory.">
 	<main class="bg-gradient-radial from-primary-light-orange to-primary-orange">
 
-		<section class="flex flex-col justify-center items-center bg-gradient-radial from-primary-light-orange via-primary-orange to-bang-red pb-10">
-			
+		<section class="flex flex-col justify-center items-center bg-gradient-radial from-primary-light-orange via-primary-orange to-bang-red pb-28">
 			<header class="flex flex-col justify-center items-center gap-5 pt-20 ">
 				<Logo />
 				<h2 class="font-title text-4xl">Cast gallery</h2>
@@ -31,6 +30,10 @@ const chars: PaginatedResponse = await response.json()
 				<Pagination currentPage={currentPage} pages={chars.total} />
 			</footer>
 		</section>
+
+		<div class="flex flex-grow justify-center items-center relative">
+			<img src="/img/atom.svg" class="w-32 h-32 absolute opacity-50 -rotate-90" />
+		</div>
 		
 		<section class="container h-full m-auto py-28">
 			<article id="items" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
