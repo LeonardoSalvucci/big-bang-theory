@@ -25,7 +25,7 @@ const chars: PaginatedResponse = await response.json()
 					<span class="font-title text-2xl text-bang-red">Search</span>
 					<input type="text" class="w-full h-10 rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-200 border-2 border-bang-red text-bang-red pl-10 bg-primary-light-orange placeholder-zinc-500" placeholder="Search by name or character name..." />
 				</section>
-				<section id="items" class="grid grid-cols-3 gap-10">
+				<section id="items" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 					{
 						chars.items.map(char => {
 							return (
