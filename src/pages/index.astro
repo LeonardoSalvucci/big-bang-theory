@@ -24,7 +24,7 @@ const chars: PaginatedResponse = await response.json()
 				</header>
 				<section class="flex flex-col flex-1 w-3/5">
 					<span class="font-title text-2xl text-bang-red">Search</span>
-					<input type="text" class="w-full h-10 rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-200 border-2 border-bang-red text-bang-red pl-10 bg-primary-light-orange placeholder-zinc-500" placeholder="Search by name or character name..." />
+					<input type="text" class="w-full h-10 rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-200 border-2 border-bang-red text-bang-red pl-5 bg-primary-light-orange placeholder-zinc-500 text-ellipsis" placeholder="Search by name or character name..." />
 					<div class="flex flex-grow justify-center items-center pt-5">
 						<a 
 						href={parseInt(currentPage) === 1 ? '#' : `?page=${parseInt(currentPage) - 1}`} 
