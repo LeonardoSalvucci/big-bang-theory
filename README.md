@@ -28,7 +28,14 @@ Response object is like this example:
       "id": 1,
       "name": "Johnny Galecki",
       "photo": "https://m.media-amazon.com/images/M/MV5BNzQ2ODY0MTIwMV5BMl5BanBnXkFtZTcwNDQ2NzMzMw@@._V1_UX266.jpg",
-      "charName": "Leonard Hofstadter"
+      "charName": "Leonard Hofstadter",
+      "episodes": [
+      {
+        "text": "The Stockholm Syndrome (2019) ... Leonard Hofstadter",
+        "url": "https://www.imdb.com/title/tt6674736/?ref_=ttfc_fc_cl_i1"
+      },
+      ...
+      ]
     },
     ...
   ]
