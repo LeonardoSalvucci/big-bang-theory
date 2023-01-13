@@ -42,9 +42,10 @@ async function processEpisodesLink (url) {
   const $ = cheerio.load(episodesHtml)
   const episodes = $('.filmo-episodes')
   const episodesResp = []
-  episodes.each((_, el) => {
+  episodes.each((index, el) => {
     const episode = $(el)
     episodesResp.push({
+      id: index,
       text: cleanText(episode.text()),
       url: `https://www.imdb.com${episode.find('a')[0].attribs.href}`
     })
@@ -55,25 +56,29 @@ async function processEpisodesLink (url) {
 const chars = []
 for (const char of characters) { // Use a for...of loop to iterate over the characters and prevent to be blocked by the server
   const aux = {}
+  const $char = $(char)
 
   // Retrieve the photo and the actor name
-  const img = $(char).find('.primary_photo img')[0]
+  const img = $char.find('.primary_photo img')[0]
   if (img) {
     aux.name = img.attribs.title || img.attribs.alt
     aux.photo = recreatePhotoURL(img.attribs.loadlate) ?? null
   }
 
   // Char name
-  const charName = $(char).find('.character a')[0]
+  const charName = $char.find('.character a')[0]
   if (charName) aux.charName = charName.children[0].data
 
   // Episodes of the actor
-  const episodes = $(char).find('.character .toggle-episodes')
+  const episodes = $char.find('.character .toggle-episodes')
   if (episodes.length > 0) {
     aux.episodesLink = getEpisodesLink(episodes[0].attribs.onclick)
     aux.episodes = await processEpisodesLink(aux.episodesLink)
   }
-  if (aux.name && aux.charName) chars.push(aux)
+  if (aux.name && aux.charName) {
+    aux.id = $char.index()
+    chars.push(aux)
+  }
 }
 
 await writeFile('./db/characters.json', JSON.stringify(chars, null, 2))
