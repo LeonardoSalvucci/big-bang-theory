@@ -17,7 +17,16 @@ const chars: PaginatedResponse = await response.json()
 
 <Layout title="The Big Bang Theory.">
 	<main class="bg-gradient-radial from-primary-light-orange to-primary-orange">
-
+		<header>
+			<div class="fixed h-full flex-grow flex flex-col justify-center items-center gap-2 after:bg-white after:h-20 after:w-10 after:absolute after:z-0">
+				<a class="w-full pl-1 z-10" href="https://github.com/LeonardoSalvucci/big-bang-theory" target="_blank">
+					<img src="/img/github.svg" class="h-6 hover:scale-125 duration-300"/>
+				</a>
+				<a class="w-full pl-1 z-10" href="https://www.linkedin.com/in/leonardosalvucci/" target="_blank">
+					<img src="/img/linkedin.svg" class="h-6 hover:scale-125 duration-300" />
+				</a>
+			</div>
+		</header>
 		<section class="flex flex-col justify-center items-center bg-gradient-radial from-primary-light-orange via-primary-orange to-bang-red pb-28">
 			<header class="flex flex-col justify-center items-center gap-5 pt-20 ">
 				<Logo />
