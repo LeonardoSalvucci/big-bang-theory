@@ -5,12 +5,63 @@ import { paginate } from './utils/paginate'
 
 const app = new Hono()
 app.use('*', cors())
+
 /**
- * @api {get} /all Get all characters
+ * @api {get} / Get all available endpoints
+ */
+app.get('/', (c) => {
+  return c.json({
+    all: {
+      type: 'GET',
+      url: '/all',
+      pagination: true,
+      params: [
+        'page',
+        'limit'
+      ]
+    },
+    episodes: {
+      type: 'GET',
+      url: '/episodes/:charId',
+      pagination: true,
+      params: [
+        'page',
+        'limit'
+      ]
+    },
+    search: {
+      type: 'GET',
+      url: '/search',
+      pagination: false,
+      params: [
+        'q'
+      ]
+    }
+  })
+})
+
+/**
+ * @api {get} /all Get all characters. This will not
  */
 app.get('/all', (c) => {
   const { page: pageNumber, limit: pageSize } = c.req.query()
-  return c.json(paginate(Character, { pageNumber, pageSize }))
+  return c.json(paginate(Character, { pageNumber, pageSize, exclude: ['episodes', 'episodesLink'] }))
+})
+
+/**
+ * @api {get} /episodes/:charId Get all episodes for a character
+ */
+app.get('/episodes/:charId', (c) => {
+  const charId = parseInt(c.req.param('charId'))
+  const { page: pageNumber, limit: pageSize } = c.req.query()
+
+  const character = Character.find((char) => char.id === charId)
+
+  if (!character) {
+    return c.json({ error: 'Character not found' }, 404)
+  }
+
+  return c.json(paginate(character.episodes, { pageNumber, pageSize }))
 })
 
 /**

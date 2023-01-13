@@ -13,7 +13,10 @@ This project consists in two parts.
 ## Live Preview
 * The API is available at https://big-bang-theory-api.lesalvucci.workers.dev. The API is currently in version 1.0.0.
 * The frontend is available at https://big-bang-theory.vercel.app. The frontend is currently in development.
+
 ## API
+### GET /
+Returns API available endpoints
 
 ### GET /all
 Returns all characters with pagination. The default page size is 10. You can change the page size by adding a `limit` query parameter. You can also change the page by adding a `page` query parameter. Giving a `limit` parameter with `-1` will return all characters.
@@ -28,14 +31,26 @@ Response object is like this example:
       "id": 1,
       "name": "Johnny Galecki",
       "photo": "https://m.media-amazon.com/images/M/MV5BNzQ2ODY0MTIwMV5BMl5BanBnXkFtZTcwNDQ2NzMzMw@@._V1_UX266.jpg",
-      "charName": "Leonard Hofstadter",
-      "episodes": [
-      {
-        "text": "The Stockholm Syndrome (2019) ... Leonard Hofstadter",
-        "url": "https://www.imdb.com/title/tt6674736/?ref_=ttfc_fc_cl_i1"
-      },
-      ...
-      ]
+      "charName": "Leonard Hofstadter",   
+    },
+    ...
+  ]
+}
+```
+
+### GET /episodes/:charId
+Returns all episodes for a character. The `charId` is the id of the character. The default page size is 10. You can change the page size by adding a `limit` query parameter. You can also change the page by adding a `page` query parameter. Giving a `limit` parameter with `-1` will return all episodes.
+Response object is like this example: 
+```json
+{
+  "total": 280,
+  "pages": 28,
+  "limit": 10,
+  "items": [
+    {
+      "id": 0,
+      "text": "The Stockholm Syndrome (2019) ... Leonard Hofstadter",
+      "url": "https://www.imdb.com/title/tt6674736/?ref_=ttfc_fc_cl_i1"
     },
     ...
   ]
