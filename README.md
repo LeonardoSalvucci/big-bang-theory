@@ -12,7 +12,7 @@ This project consists in two parts.
 
 ## Live Preview
 * The API is available at https://big-bang-theory-api.lesalvucci.workers.dev. The API is currently in version 1.0.0.
-* The frontend is available at https://big-bang-theory.vercel.app. The frontend is currently in development.
+* The frontend is available at https://big-bang-theory.lesalvucci.xyz. The frontend is currently in development.
 
 ## API
 ### GET /
